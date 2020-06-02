@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"time"
 )
 
 func findFactors(number int) (factors []int) {
-	// "number / 2" since 2 is the smallet possible prime factor
 	i := 2
-	for i <= number/2 {
+	last := int(math.Sqrt(float64(number)))
+	for i <= last {
 		if number%i == 0 {
 			factors = append(factors, findFactors(i)...)
 			number = number / i
@@ -19,6 +20,10 @@ func findFactors(number int) (factors []int) {
 		i++
 	}
 	return append(factors, number)
+}
+
+func formatFactors(factors []int) {
+
 }
 
 func main() {
